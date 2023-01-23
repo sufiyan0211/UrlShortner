@@ -34,4 +34,7 @@ build/
 
 
 .DS_Store
+target/*
+src/main/resources/application-dev.properties
+src/main/resources/application-prod.properties
 
