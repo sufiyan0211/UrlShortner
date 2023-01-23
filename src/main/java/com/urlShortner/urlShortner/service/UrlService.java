@@ -69,6 +69,11 @@ public class UrlService {
         urlRepository.deleteAll();
     }
 
+    public Url getUrlObject(String shortUrl) {
+        Url url = urlRepository.findByShortUrl(shortUrl);
+        return url;
+    }
+
     private String encodeUrl(String url)
     {
         String encodedUrl = "";
