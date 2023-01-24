@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>URL Shortener</h1>
+    <h3>Original URL</h3>
+    <div th:text="${originalUrl}"></div>
+    <h3>Shortened URL</h3>
+    <div th:text="${shortenedUrl}"></div>
+    <button onclick="copyText()">Copy</button>
+
+    <script th:inline="javascript">
+        var jsVariable = /*[[${shortenedUrl}]]*/;
+    </script>
+
+    <script>
+        function copyText() {
+            navigator.clipboard.writeText
+            (jsVariable);
+        }
+    </script>
+
+
+
+</div>
+</body>
+</html>

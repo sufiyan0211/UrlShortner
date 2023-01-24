@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<main>
+<div class="container">
+    <h1>URL Shortener</h1>
+    <form th:action="@{/shorten}" th:object="${urlRequestBodyForm}" method="post">
+        <div class="form-group">
+            <label>Original URL</label>
+            <input type="text" class="form-control" id="originalUrl" name="originalUrl" placeholder="Enter original URL" th:field="*{longUrl}">
+        </div>
+        <button type="submit" class="btn btn-primary">Shorten</button>
+    </form>
+    <hr>
+</div>
+
+</main>
+
+<footer class="text-center text-white bottom" style="background-color: #21081a;">
+    <!-- Grid container -->
+    <div class="container p-4"></div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+
+</body>
+</html>
