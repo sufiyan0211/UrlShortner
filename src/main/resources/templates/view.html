@@ -10,17 +10,21 @@
     <h3>Original URL</h3>
     <div th:text="${originalUrl}"></div>
     <h3>Shortened URL</h3>
-    <div th:text="${shortenedUrl}"></div>
+    <div th:text="${shortenedUrl}" id="shortened-url"></div>
     <button onclick="copyText()">Copy</button>
 
-    <script th:inline="javascript">
-        var jsVariable = /*[[${shortenedUrl}]]*/;
-    </script>
+
 
     <script>
         function copyText() {
-            navigator.clipboard.writeText
-            (jsVariable);
+            var copyText = document.getElementById("shortened-url");
+            var dummy = document.createElement("textarea");
+            dummy.value = copyText.textContent;
+            document.body.appendChild(dummy);
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            alert("Copied the shortened URL: " + copyText.textContent);
         }
     </script>
 
