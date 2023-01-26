@@ -45,8 +45,7 @@ public class UrlRestController {
     @GetMapping("/{shortLink}")
     public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String shortLink, HttpServletResponse response) throws IOException {
 
-        if(StringUtils.isEmpty(shortLink))
-        {
+        if (StringUtils.isEmpty(shortLink)) {
             ResponseBody responseBody = new ResponseBody();
             responseBody.setError("Invalid Url");
             responseBody.setStatus("400");
@@ -55,25 +54,23 @@ public class UrlRestController {
 
         Url url = urlService.getUrlObject(shortLink);
 
-        if(url == null)
-        {
+        if (url == null) {
             ResponseBody responseBody = new ResponseBody();
             responseBody.setError("Url does not exist or it might have expired!");
             responseBody.setStatus("400");
-            return new ResponseEntity<ResponseBody>(responseBody,HttpStatus.OK);
+            return new ResponseEntity<ResponseBody>(responseBody, HttpStatus.OK);
         }
 
         LocalDate todayDate = LocalDate.now();
         LocalDate createdDate = url.getCreatedDate();
         long daysBetween = ChronoUnit.DAYS.between(createdDate, todayDate);
 
-        if(daysBetween > 7)
-        {
+        if (daysBetween > 7) {
             urlService.deleteUrl(shortLink);
             ResponseBody responseBody = new ResponseBody();
             responseBody.setError("Url Expired. Please try generating a fresh one.");
             responseBody.setStatus("200");
-            return new ResponseEntity<ResponseBody>(responseBody,HttpStatus.OK);
+            return new ResponseEntity<ResponseBody>(responseBody, HttpStatus.OK);
         }
 
         response.sendRedirect(url.getLongUrl());

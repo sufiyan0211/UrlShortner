@@ -17,15 +17,14 @@ import java.util.List;
 
 @Service
 public class UrlService {
+    Logger logger = LoggerFactory.getLogger(UrlService.class);
     @Autowired
     private UrlRepository urlRepository;
-
-    Logger logger = LoggerFactory.getLogger(UrlService.class);
 
     public ResponseBody createShortUrl(UrlRequestBody urlRequestBody) {
         logger.info("Creating Short Url of " + urlRequestBody.getLongUrl());
         ResponseBody responseBody = new ResponseBody();
-        if(StringUtils.isEmpty(urlRequestBody.getLongUrl())) {
+        if (StringUtils.isEmpty(urlRequestBody.getLongUrl())) {
             logger.warn("Request Long Url is empty");
             responseBody.setStatus("404");
             responseBody.setError("Please provide the valid url");
@@ -34,14 +33,13 @@ public class UrlService {
         logger.info("Encoding the Long Url " + urlRequestBody.getLongUrl());
         String encodeUrl = encodeUrl(urlRequestBody.getLongUrl());
         logger.info("Encoded Url is: " + encodeUrl);
-        List<Url> allUrls =  listAllUrls();
+        List<Url> allUrls = listAllUrls();
         Url url = urlRepository.findByShortUrl(encodeUrl);
-        if(allUrls.contains(url)) {
+        if (allUrls.contains(url)) {
             logger.warn("Long Url already existed in the Database");
             responseBody.setStatus("200");
             responseBody.setUrl(url);
-        }
-        else {
+        } else {
             url = new Url();
             url.setLongUrl(urlRequestBody.getLongUrl());
             url.setShortUrl(encodeUrl);
@@ -74,12 +72,11 @@ public class UrlService {
         return url;
     }
 
-    private String encodeUrl(String url)
-    {
+    private String encodeUrl(String url) {
         String encodedUrl = "";
         encodedUrl = Hashing.murmur3_32()
-                        .hashString(url, StandardCharsets.UTF_8)
-                        .toString();
+                .hashString(url, StandardCharsets.UTF_8)
+                .toString();
         return encodedUrl;
     }
 
