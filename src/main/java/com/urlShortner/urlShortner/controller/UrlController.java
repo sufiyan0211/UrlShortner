@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 
 @Controller
 public class UrlController {
@@ -44,6 +48,12 @@ public class UrlController {
             shortUrlView += shortUrl;
         }
         model.addAttribute("shortenedUrl", shortUrlView);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate expiryDate = responseBody.getUrl().getCreatedDate().plusDays(7);
+        String expiryDateStr = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(expiryDate);
+
+        model.addAttribute("expiryDate", expiryDateStr);
 
         return "view";
     }

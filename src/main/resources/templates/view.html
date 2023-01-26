@@ -24,6 +24,14 @@
             <br>
             <button onclick="copyText()" class="btn btn-primary">Copy</button>
 
+            <br><br><br><br>
+
+            <h3 style="font-size:30px;color:#4b4c4d;">Expiry Date</h3>
+            <span th:text="${expiryDate}" style="font-size:15px;color:#4b4c4d;background-color:#FFFF00;"></span>
+
+            <br><br><br><br>
+
+
             <script>
                 function copyText() {
                     var copyText = document.getElementById("shortened-url");
