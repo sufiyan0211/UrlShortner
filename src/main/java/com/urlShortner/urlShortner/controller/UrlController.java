@@ -49,7 +49,6 @@ public class UrlController {
         }
         model.addAttribute("shortenedUrl", shortUrlView);
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate expiryDate = responseBody.getUrl().getCreatedDate().plusDays(7);
         String expiryDateStr = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(expiryDate);
 
