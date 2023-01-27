@@ -34,24 +34,28 @@ public class UrlController {
     @PostMapping("/shorten")
     public String shorten(@ModelAttribute UrlRequestBody urlRequestBody, Model model) {
         ResponseBody responseBody = urlService.createShortUrl(urlRequestBody);
-        model.addAttribute("originalUrl", responseBody.getUrl().getLongUrl());
+        Boolean validUrl = "200".equals(responseBody.getStatus());
+        model.addAttribute("validUrl", validUrl);
+        model.addAttribute("responseBody", responseBody);
+        if (validUrl) {
+            model.addAttribute("originalUrl", responseBody.getUrl().getLongUrl());
 
-        String shortUrl = responseBody.getUrl().getShortUrl();
-        String shortUrlView = "";
-        if ("prod".equals(activeProfile)) {
-            shortUrlView = "http://short.sufiyandev.com/";
-            shortUrlView += shortUrl;
-        } else {
-            shortUrlView = "http://localhost:9090/";
-            shortUrlView += shortUrl;
+            String shortUrl = responseBody.getUrl().getShortUrl();
+            String shortUrlView = "";
+            if ("prod".equals(activeProfile)) {
+                shortUrlView = "http://short.sufiyandev.com/";
+                shortUrlView += shortUrl;
+            } else {
+                shortUrlView = "http://localhost:9090/";
+                shortUrlView += shortUrl;
+            }
+            model.addAttribute("shortenedUrl", shortUrlView);
+
+            LocalDate expiryDate = responseBody.getUrl().getCreatedDate().plusDays(7);
+            String expiryDateStr = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(expiryDate);
+
+            model.addAttribute("expiryDate", expiryDateStr);
         }
-        model.addAttribute("shortenedUrl", shortUrlView);
-
-        LocalDate expiryDate = responseBody.getUrl().getCreatedDate().plusDays(7);
-        String expiryDateStr = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(expiryDate);
-
-        model.addAttribute("expiryDate", expiryDateStr);
-
         return "view";
     }
 
