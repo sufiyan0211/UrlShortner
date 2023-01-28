@@ -35,8 +35,10 @@ public class UrlController {
     public String shorten(@ModelAttribute UrlRequestBody urlRequestBody, Model model) {
         ResponseBody responseBody = urlService.createShortUrl(urlRequestBody);
         Boolean validUrl = "200".equals(responseBody.getStatus());
+
         model.addAttribute("validUrl", validUrl);
         model.addAttribute("responseBody", responseBody);
+
         if (validUrl) {
             model.addAttribute("originalUrl", responseBody.getUrl().getLongUrl());
 
@@ -58,5 +60,4 @@ public class UrlController {
         }
         return "view";
     }
-
 }
