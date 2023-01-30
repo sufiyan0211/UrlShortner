@@ -1,8 +1,9 @@
-package com.urlShortner.urlShortner.repository;
+package com.urlShortner.urlShortner.repository.slave;
 
 import com.urlShortner.urlShortner.model.Url;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UrlRepository extends JpaRepository<Url, Long> {
+public interface SlaveUrlRepository extends JpaRepository<Url, Long> {
     Url findByShortUrl(String shortUrl);
 }
+
