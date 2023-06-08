@@ -51,4 +51,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_594AB1D106DC47FDBAA4B7CE75F0735F }}
           package: '*.jar'
-          vm: '-Djasypt.encryptor.password=bcT@123'
