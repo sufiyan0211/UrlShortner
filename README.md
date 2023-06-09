@@ -1,7 +1,13 @@
-Url Shortner
-=== 
+<h1 align="center">Url Shortner</h1>
 
-Scheduler Microservice [Repository](https://github.com/sufiyan0211/Schedular-Microservice)
+
+<p align="center">
+  <i>
+    Web application that converts long URLs into shorter URLs of 8 characters and stores them in a database. The shorter URL can then be used to access the original long URL
+  </i>
+</p>
+ 
+- Scheduler Microservice <a href="https://github.com/sufiyan0211/Schedular-Microservice" alt="">Repository</a>
 
 ## Design 
 <img src="URL Shortner Design.png" alt="">
