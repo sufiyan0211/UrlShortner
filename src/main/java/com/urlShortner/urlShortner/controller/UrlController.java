@@ -45,7 +45,7 @@ public class UrlController {
             String shortUrl = responseBody.getUrl().getShortUrl();
             String shortUrlView = "";
             if ("prod".equals(activeProfile)) {
-                shortUrlView = "http://p1.sufiyandev.com/";
+                shortUrlView = "https://urlbit.azurewebsites.net/";
                 shortUrlView += shortUrl;
             } else {
                 shortUrlView = "http://localhost:9090/";
