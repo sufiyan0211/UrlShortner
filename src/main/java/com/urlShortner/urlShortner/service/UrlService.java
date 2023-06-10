@@ -73,7 +73,6 @@ public class UrlService {
         masterUrlRepository.save(url);
         slaveUrlRepository.save(url);
         responseBody.setStatus("200");
-        responseBody.setError("Successfully");
         responseBody.setUrl(url);
 
         return responseBody;
