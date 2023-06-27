@@ -12,6 +12,34 @@
 ## Design 
 <img src="URL Shortner Design.png" alt="">
 
+## Database 
+- Just one Table name as Url.
+- Description of Url Table:
+  |Long_Url|Short_Url|Created_Date|
+  |-|-|-|
+  |2048 Bytes|8 Byte|7 Byte|
+- Size of one row is <b>2063 Bytes</b>.
+  
+## System
+ - Write speed = 10 <i>write per seconds</i>.
+ - Expiry of each short url is 7 days.</br>
+```
+  Count of Short Urls = 10 * 60 * 60 * 24 * 7 days </br>
+                       = 60,48,000
+                       = 6 * 10^6
+                       = 6 millions
+```
+- Means in 7 days database will have 6 million short urls.
+```
+  Database Storage after 7 days = 6 * 10^6 * 2063 Bytes
+                                = 12,378 * 10^6 Bytes
+                                = 12.37 * 10^9 Bytes
+                                = 13 GB
+```
+
+## Concurency
+  <b>Initial Approach</b> (Single Threaded)
+  
 
 ## Description
 - Developed a web application that converts long URLs into shorter URLs of 8 characters and stores them in a database. The shorter URL can then be used to access the original long URL.
