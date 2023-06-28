@@ -10,7 +10,7 @@
 - Scheduler Microservice <a href="https://github.com/sufiyan0211/Schedular-Microservice" alt="">Repository</a>
 
 ## Design 
-<img src="URL Shortner Design.png" alt="">
+<img src="staticImages/URL Shortener Design.png" alt="">
 
 ## Database 
 - Just one Table name as Url.
@@ -37,8 +37,12 @@
                                 = 13 GB
 ```
 
-## Concurency
-  <b>Initial Approach</b> (Single Threaded)
+## Concurrency
+- <b>Initial Approach</b> (Single Threaded)</br>
+  <img src="staticImages/Concurrency- Initial Design.png" alt=""></br>
+- <b>Initial Approach</b> (Single Threaded)</br>
+  <img src="staticImages/Concurrency- Final Design.png" alt=""></br>
+
   
 
 ## Description
