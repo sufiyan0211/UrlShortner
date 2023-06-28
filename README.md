@@ -1,7 +1,7 @@
 <h1 align="center">Url Shortner</h1>
 
 
-<p align="center">
+<p align="left">
   <i>
     Web application that converts long URLs into shorter URLs of 8 characters and stores them in a database. The shorter URL can then be used to access the original long URL
   </i>
@@ -36,11 +36,17 @@
                                 = 12.37 * 10^9 Bytes
                                 = 13 GB
 ```
+- As there are 8 characters length short url so there will be 36<sup>8</sup> unique short urls presents.</br>
+```
+            = 28,21,10,99,07,456
+            = 2.82 * 10^12
+            = 2.82 trillion short urls
+```
 
 ## Concurrency
 - <b>Initial Approach</b> (Single Threaded)</br>
   <img src="staticImages/Concurrency- Initial Design.png" alt=""></br>
-- <b>Initial Approach</b> (Single Threaded)</br>
+- <b>Scale Approach</b> (Multiple Threaded support)</br>
   <img src="staticImages/Concurrency- Final Design.png" alt=""></br>
 
   
